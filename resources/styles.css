@@ -1,0 +1,95 @@
+/* CSS HEX */
+:root{
+    /* CSS HEX */
+    --celeste: #a7fffeff;
+    --prussian-blue: #002b3eff;
+    --aquamarine: #81f0c7ff;
+    --rich-black-fogra-39: #05060dff;
+    --magic-mint: #affaebff;
+}
+
+*{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: var(--prussian-blue);
+}
+
+header{
+    background-color: var(--magic-mint);
+    color: var(--rich-black-fogra-39);
+    text-shadow: 1.5px 1.5px 4px var(--prussian-blue);
+}
+
+main{
+    background-image: url("background.jpg");
+    background-size: cover;
+    padding: 12px 20px;
+    min-height: 500px;
+}
+main >*{
+    font-weight:bold;
+}
+
+section{
+    width: 50%;
+    float: left;
+}
+
+h1{
+    margin: auto;
+    padding: 15px;
+}
+
+
+input{
+    display: block;
+    margin: 20px;
+    width: 80%;
+    height: 50px;
+}
+
+button{
+    font-size: 16px;
+    font-weight: bold;
+    background: var(--celeste);
+    color: var(--rich-black-fogra-39);
+    border: none;
+    opacity: 0.8;
+    width: 200px;
+    height: 30px;
+    margin: 60px 50px 20px;
+    border-radius: 20px;
+}
+button:hover{
+    opacity: 1;
+    background: var(--rich-black-fogra-39);
+    color: var(--celeste);
+}
+label{
+    color: var(--celeste);
+}
+
+footer{
+    background-color: var(--rich-black-fogra-39);
+    color: whitesmoke;
+    padding: 15px 30px;
+    margin-top: 9px;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#resultado{
+    background-color: rgba(0, 43, 62, 0.849);
+    padding: 15px;
+    color: var(--celeste);
+    width: 80%;
+    height: 140px;
+}
