@@ -17,8 +17,12 @@ function cifrarTrans(idMensaje,idClave){
         for(var i=0;i<(mensaje.length/lonclave);i++){
             matrizT[i] = new Array();
             for(var j=0;j<lonclave;j++){
-                matrizT[i][j] = mensaje[ltr];
-                ltr++;
+                if(mensaje[ltr]!=undefined){
+                    matrizT[i][j] = mensaje[ltr];
+                    ltr++;
+                }else{
+                    matrizT[i][j] = "|";
+                }
             }
         }
     }
@@ -57,6 +61,7 @@ function cifrarTrans(idMensaje,idClave){
 function desCifrarTrans(idMensaje,idClave){
     //variables
     var matrizT = new Array();
+    var mAux = new Array();
     var msgdesEncriptado="";
 
     //Obtenemos los valores del mensaje
@@ -69,11 +74,21 @@ function desCifrarTrans(idMensaje,idClave){
         window.alert("No puede ser menor la longitud del mensaje o no puede repetir letras en la clave");
     }else{
         //Generamos nuestra matriz
-        var ltr = 0;
-        for(var i=0;i<lonclave;i++){
+        
+        for(var i=0;i<(mensaje.length/lonclave);i++){
             matrizT[i] = new Array();
-            for(var j=0;j<(mensaje.length/lonclave);j++){
-                matrizT[i][j] = mensaje[ltr];
+            mAux[i] = new Array();
+            for(var j=0;j<lonclave;j++){
+                matrizT[i][j] = "";
+                mAux[i][j] = "";
+            }
+        }
+        //LLenamos con las letras hacia abajo
+
+        var ltr = 0;
+        for(var i=0;i<(lonclave);i++){
+            for(var j=0;j<mensaje.length/lonclave;j++){
+                matrizT[j][i] = mensaje[ltr];
                 ltr++;
             }
         }
@@ -87,20 +102,34 @@ function desCifrarTrans(idMensaje,idClave){
     var clsorted = clave.split('').sort();
     console.log("Clave ordenada: "+clsorted);
 
-    //Generamos nuestro mensaje cifrado
+    //Generamos nuestro mensaje descifrado
     var i=0;
     var j=0;
+    var index = 0;
     while(i<=lonclave){
-        if(clsorted[i]==clave[j]){
+        if(clave[i]==clsorted[j]){
             for(var k=0; k<(mensaje.length/lonclave);k++){
                 if(matrizT[k][j]!=undefined){
-                    msgdesEncriptado = msgdesEncriptado+matrizT[k][j];
+                    mAux[k][index] = matrizT[k][j];
                 }
             }
+            index++;
             i++;
             j=0;
         }else{
             j++;
+        }
+    }
+
+    for(var element in mAux){
+        console.log(mAux[element]);
+    }
+
+    for(var i=0;i<(mensaje.length/lonclave);i++){
+        for(var j=0;j<lonclave;j++){
+            if(mAux[i][j]!='|'){
+                msgdesEncriptado += mAux[i][j];
+            }
         }
     }
 
